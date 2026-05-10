@@ -11,19 +11,19 @@ Downloads:
 Alternatively run without --csv to generate 500 synthetic historical matches
 for immediate testing without any data download.
 """
-import asyncio
 import argparse
+import asyncio
 import random
 import sys
-from pathlib import Path
 from datetime import datetime, timedelta
+from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from app.database import init_db, AsyncSessionLocal
-from app import models
-from sqlalchemy import select, func
+from sqlalchemy import func, select
 
+from app import models
+from app.database import AsyncSessionLocal, init_db
 
 TEAMS = [
     "Manchester City", "Arsenal", "Liverpool", "Chelsea",

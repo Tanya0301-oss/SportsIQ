@@ -2,10 +2,11 @@
 Players router — GET /api/v1/players, GET /api/v1/players/{id}/stats
 """
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from app.database import get_db
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from app import models, schemas
+from app.database import get_db
 
 router = APIRouter(prefix="/players", tags=["players"])
 

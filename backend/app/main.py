@@ -9,22 +9,22 @@ Lifespan:
   - Starts the prediction consumer loop
 """
 import asyncio
+import random
 from contextlib import asynccontextmanager
 from datetime import datetime, timedelta
-import random
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
 
-from app.config import get_settings
-from app.database import init_db, AsyncSessionLocal
 from app import models
+from app.config import get_settings
+from app.database import AsyncSessionLocal, init_db
+from app.routers import lineup, matches, players, predictions, websocket
 from app.services import prediction_service
-from app.routers import matches, predictions, players, lineup, websocket
-from pipeline.simulator import start_all_live_matches
-from pipeline.live_feed import start_live_feed
 from pipeline.consumer import start_consumer
+from pipeline.live_feed import start_live_feed
+from pipeline.simulator import start_all_live_matches
 
 settings = get_settings()
 
@@ -69,7 +69,7 @@ DEMO_PLAYERS = [
 async def seed_demo_data():
     """Insert demo matches and players if DB is empty."""
     async with AsyncSessionLocal() as db:
-        from sqlalchemy import select, func
+        from sqlalchemy import func, select
         count_result = await db.execute(select(func.count()).select_from(models.Match))
         count = count_result.scalar()
         if count > 0:

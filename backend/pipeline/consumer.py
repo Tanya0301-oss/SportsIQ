@@ -7,13 +7,14 @@ the in-memory pub/sub that the simulator publishes to.
 """
 import asyncio
 import json
-from loguru import logger
 
-from app.services.cache import subscribe, unsubscribe
-from app.services import prediction_service
-from app.database import AsyncSessionLocal
-from app import models
+from loguru import logger
 from sqlalchemy import select
+
+from app import models
+from app.database import AsyncSessionLocal
+from app.services import prediction_service
+from app.services.cache import subscribe, unsubscribe
 
 
 async def handle_state_event(event: dict):

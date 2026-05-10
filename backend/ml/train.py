@@ -14,25 +14,25 @@ Run:
   python -m ml.train --csv data/E0.csv --trials 50
 """
 import argparse
+import os
 import pickle
 import sys
-import os
 from pathlib import Path
 
-import numpy as np
-import pandas as pd
 import mlflow
+import numpy as np
 import optuna
+import pandas as pd
 import xgboost as xgb
 from sklearn.calibration import CalibratedClassifierCV
-from sklearn.metrics import roc_auc_score, log_loss
+from sklearn.metrics import log_loss, roc_auc_score
 from sklearn.preprocessing import LabelEncoder
 
 # Ensure backend/ is on sys.path when running directly
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from ml.feature_extractor import FeatureExtractor, FEATURE_NAMES
 from ml.evaluate import evaluate_model
+from ml.feature_extractor import FEATURE_NAMES, FeatureExtractor
 
 optuna.logging.set_verbosity(optuna.logging.WARNING)
 
@@ -122,7 +122,7 @@ def make_objective(X_train, y_train, X_val, y_val):
 
 def train(csv_path: str, n_trials: int = 50):
     print(f"\n{'='*60}")
-    print(f"  Sports Analytics — ML Training Pipeline")
+    print("  Sports Analytics — ML Training Pipeline")
     print(f"  Data: {csv_path}  |  Trials: {n_trials}")
     print(f"{'='*60}\n")
 

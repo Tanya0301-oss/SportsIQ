@@ -1,12 +1,13 @@
 """Tests for FeatureExtractor."""
 import sys
 from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from ml.feature_extractor import FeatureExtractor, FEATURE_NAMES
+from ml.feature_extractor import FEATURE_NAMES, FeatureExtractor
 
 
 @pytest.fixture

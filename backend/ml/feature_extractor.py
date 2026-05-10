@@ -13,10 +13,10 @@ Features produced:
   possession_home, time_remaining_frac, is_tied,
   home_form_5, away_form_5
 """
-import numpy as np
-import pandas as pd
 from typing import Any
 
+import numpy as np
+import pandas as pd
 
 FEATURE_NAMES = [
     "minute",

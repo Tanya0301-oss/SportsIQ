@@ -4,8 +4,9 @@ Tracks active connections per match_id and broadcasts prediction payloads.
 """
 import asyncio
 import json
-from typing import DefaultDict
 from collections import defaultdict
+from typing import DefaultDict
+
 from fastapi import WebSocket
 from loguru import logger
 

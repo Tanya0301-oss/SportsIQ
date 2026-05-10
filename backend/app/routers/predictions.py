@@ -2,13 +2,15 @@
 Predictions router — GET /api/v1/matches/{id}/prediction
 """
 from datetime import datetime
+
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from app.database import get_db
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from app import models, schemas
-from app.services.cache import cache_get
+from app.database import get_db
 from app.services import prediction_service
+from app.services.cache import cache_get
 
 router = APIRouter(prefix="/matches", tags=["predictions"])
 

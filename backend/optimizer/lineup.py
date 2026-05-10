@@ -11,11 +11,8 @@ Constraints:
   - 1-3 FWD
   - Max 3 players from same club
 """
-from pulp import (
-    LpProblem, LpMaximize, LpVariable, lpSum,
-    LpBinary, LpStatus, value, PULP_CBC_CMD
-)
 from loguru import logger
+from pulp import PULP_CBC_CMD, LpBinary, LpMaximize, LpProblem, LpStatus, LpVariable, lpSum, value
 
 
 def optimise_lineup(players: list[dict], budget: float = 100.0, formation: str = "4-3-3") -> dict:

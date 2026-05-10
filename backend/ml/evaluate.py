@@ -3,7 +3,7 @@ Model evaluation utilities.
 Computes AUC-ROC (one-vs-rest), Brier score, and log loss.
 """
 import numpy as np
-from sklearn.metrics import roc_auc_score, log_loss
+from sklearn.metrics import log_loss, roc_auc_score
 from sklearn.preprocessing import label_binarize
 
 

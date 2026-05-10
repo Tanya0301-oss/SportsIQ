@@ -12,14 +12,15 @@ Free tier: 10 requests/min, includes live matches in current season
 import asyncio
 import json
 from datetime import datetime
-from loguru import logger
-import httpx
 
+import httpx
+from loguru import logger
+from sqlalchemy import select, update
+
+from app import models
 from app.config import get_settings
 from app.database import AsyncSessionLocal
-from app import models
 from app.services import cache
-from sqlalchemy import select, update
 
 settings = get_settings()
 
@@ -28,11 +29,11 @@ class LiveFeedManager:
     """
     Manages polling of football-data.org API and publishes match state events.
     """
-    
+
     def __init__(self):
         self.client: httpx.AsyncClient | None = None
         self.seen_states = {}  # Track published states to avoid duplicates
-        
+
     async def init_client(self):
         """Initialize HTTP client with API key."""
         if not settings.football_data_api_key:
@@ -44,7 +45,7 @@ class LiveFeedManager:
             headers={"X-Auth-Token": settings.football_data_api_key},
             timeout=30.0,
         )
-        logger.info(f"Football-Data.org client initialized")
+        logger.info("Football-Data.org client initialized")
 
     async def close_client(self):
         """Close HTTP client."""
@@ -55,7 +56,7 @@ class LiveFeedManager:
         """Fetch all live and upcoming matches from the API."""
         if not self.client:
             await self.init_client()
-        
+
         try:
             # Fetch matches for active leagues
             all_matches = []
@@ -68,14 +69,14 @@ class LiveFeedManager:
                         all_matches.extend(matches)
                         logger.debug(f"Fetched {len(matches)} matches from league {league}")
                     elif response.status_code == 429:
-                        logger.warning(f"Rate limited by API — waiting before retry")
+                        logger.warning("Rate limited by API — waiting before retry")
                         return []
                     else:
                         logger.warning(f"API error for league {league}: {response.status_code}")
                 except Exception as e:
                     logger.warning(f"Error fetching league {league}: {e}")
                     continue
-            
+
             return all_matches
         except Exception as e:
             logger.error(f"Error fetching matches: {e}")
@@ -88,7 +89,7 @@ class LiveFeedManager:
             home_team = api_match.get("homeTeam", {}).get("name", "Unknown")
             away_team = api_match.get("awayTeam", {}).get("name", "Unknown")
             status = api_match.get("status", "SCHEDULED").lower()
-            
+
             # Map API status to our status
             status_map = {
                 "scheduled": "scheduled",
@@ -107,7 +108,7 @@ class LiveFeedManager:
 
             league = api_match.get("competition", {}).get("name", "Unknown League")
             season = api_match.get("season", {}).get("currentSeason", "2024/25")
-            
+
             async with AsyncSessionLocal() as db:
                 # Check if match exists
                 result = await db.execute(
@@ -155,17 +156,17 @@ class LiveFeedManager:
         try:
             match_id = api_match.get("id")
             status = api_match.get("status", "SCHEDULED").lower()
-            
+
             # Only process live and finished matches
             if status not in ["live", "in_play", "paused", "finished"]:
                 return None
 
             score = api_match.get("score", {})
-            
+
             # Get current score (live score)
             home_goals = score.get("fullTime", {}).get("home") or score.get("current", {}).get("home") or 0
             away_goals = score.get("fullTime", {}).get("away") or score.get("current", {}).get("away") or 0
-            
+
             # Calculate minute based on status
             minute = 0
             if status in ["live", "in_play", "paused"]:
@@ -205,7 +206,7 @@ class LiveFeedManager:
 
             match_id = state["match_id"]
             state_key = f"{match_id}:{state['minute']}:{state['home_goals']}:{state['away_goals']}"
-            
+
             # Skip if we already published this exact state
             if match_id in self.seen_states and self.seen_states[match_id] == state_key:
                 continue
@@ -219,20 +220,20 @@ class LiveFeedManager:
     async def poll_and_publish(self):
         """Main polling loop — fetch API every 30 seconds and publish updates."""
         logger.info("🔴 Live feed started (polling football-data.org)")
-        
+
         try:
             while True:
                 # Fetch all matches from API
                 api_matches = await self.fetch_matches()
-                
+
                 if api_matches:
                     # Sync to database
                     for api_match in api_matches:
                         await self.sync_match_to_db(api_match)
-                    
+
                     # Publish states to pub/sub
                     await self.publish_match_states(api_matches)
-                
+
                 # Wait before next poll
                 await asyncio.sleep(settings.live_feed_poll_seconds)
 

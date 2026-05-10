@@ -3,9 +3,11 @@ SQLAlchemy async database setup.
 Uses SQLite (aiosqlite) locally, PostgreSQL (asyncpg) in production.
 """
 # pyrefly: ignore [missing-import]
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+
 # pyrefly: ignore [missing-import]
 from sqlalchemy.orm import DeclarativeBase
+
 from app.config import get_settings
 
 settings = get_settings()

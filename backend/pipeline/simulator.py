@@ -12,16 +12,17 @@ Each match progresses from minute 0 to 90 with probabilistic events:
 Publishes to the pub/sub system so the Kafka consumer pattern is preserved.
 """
 import asyncio
-import random
 import json
+import random
 from datetime import datetime
-from loguru import logger
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, update
 
+from loguru import logger
+from sqlalchemy import select, update
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app import models
 from app.config import get_settings
 from app.database import AsyncSessionLocal
-from app import models
 from app.services import cache
 
 settings = get_settings()

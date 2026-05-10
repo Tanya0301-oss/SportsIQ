@@ -2,8 +2,10 @@
 SQLAlchemy ORM models for the sports analytics platform.
 """
 from datetime import datetime
-from sqlalchemy import String, Integer, Float, Boolean, DateTime, JSON, ForeignKey, Text
+
+from sqlalchemy import JSON, Boolean, DateTime, Float, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+
 from app.database import Base
 
 

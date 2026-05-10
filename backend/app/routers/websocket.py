@@ -10,13 +10,14 @@ Connection flow:
 """
 import asyncio
 import json
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Depends
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
-from loguru import logger
 
-from app.database import get_db
+from fastapi import APIRouter, Depends, WebSocket, WebSocketDisconnect
+from loguru import logger
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from app import models
+from app.database import get_db
 from app.services.cache import cache_get, subscribe, unsubscribe
 from app.ws.manager import manager
 

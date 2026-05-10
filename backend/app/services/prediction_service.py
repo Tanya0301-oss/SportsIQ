@@ -7,11 +7,12 @@ Responsibilities:
   3. Cache result in pub/sub so WebSocket clients get pushed updates
   4. Write prediction to DB
 """
+import json
 import pickle
 import time
-import json
 from pathlib import Path
 from typing import Any
+
 import numpy as np
 from loguru import logger
 

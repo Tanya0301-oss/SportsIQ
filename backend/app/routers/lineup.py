@@ -2,6 +2,7 @@
 Lineup optimizer router — POST /api/v1/lineup/optimize
 """
 from fastapi import APIRouter
+
 from app.schemas import LineupRequest, LineupResponse
 from optimizer.lineup import optimise_lineup
 
