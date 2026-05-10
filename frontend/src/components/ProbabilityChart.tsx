@@ -64,7 +64,6 @@ export default function ProbabilityChart({ data, homeTeam, awayTeam }: Props) {
         <Line
           type="monotone" dataKey="home" stroke="var(--color-green)"
           strokeWidth={2.5} dot={false} name="home"
-          strokeShadowColor="rgba(34,197,94,0.4)"
         />
         <Line
           type="monotone" dataKey="draw" stroke="var(--color-amber)"
