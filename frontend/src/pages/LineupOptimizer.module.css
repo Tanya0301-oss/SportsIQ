@@ -1,0 +1,44 @@
+.hero { text-align: center; padding: 40px 0 44px; }
+.title { font-size: clamp(28px, 5vw, 52px); }
+.accent { background: linear-gradient(135deg, var(--color-primary), var(--color-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.sub { color: var(--color-text-2); margin-top: 10px; font-size: 16px; }
+
+.layout { display: grid; grid-template-columns: 280px 1fr; gap: 20px; align-items: start; }
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+
+.controls { padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+.panelTitle { font-size: 16px; }
+.field { display: flex; flex-direction: column; }
+.poolInfo { font-size: 20px; font-weight: 700; font-family: var(--font-display); color: var(--color-primary); margin-top: 4px; }
+.optimizeBtn { width: 100%; justify-content: center; }
+.optimizeBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.error { color: var(--color-red); font-size: 13px; }
+
+.summary { border-top: 1px solid var(--color-border); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+.summaryRow { display: flex; justify-content: space-between; font-size: 13px; }
+.summaryRow span:first-child { color: var(--color-text-2); }
+.optimal { color: var(--color-green); font-weight: 600; }
+.infeasible { color: var(--color-red); font-weight: 600; }
+.pts { color: var(--color-primary); font-weight: 700; }
+
+.right { display: flex; flex-direction: column; gap: 20px; }
+
+.pitchCard { padding: 0; overflow: hidden; }
+.tableCard { padding: 20px; }
+.tableTitle { font-size: 15px; margin-bottom: 14px; }
+.table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.table th { text-align: left; padding: 8px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-3); border-bottom: 1px solid var(--color-border); }
+.table td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.table tr:last-child td { border-bottom: none; }
+.dim { color: var(--color-text-2); }
+
+.pos { display: inline-flex; align-items: center; justify-content: center; width: 36px; padding: 2px 0; border-radius: var(--radius-sm); font-size: 10px; font-weight: 700; }
+.posGK  { background: var(--color-amber-dim); color: var(--color-amber); }
+.posDEF { background: var(--color-cyan-dim);  color: var(--color-cyan); }
+.posMID { background: var(--color-primary-glow); color: var(--color-primary); }
+.posFWD { background: var(--color-red-dim);   color: var(--color-red); }
+
+.empty { padding: 60px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.emptyIcon { font-size: 48px; }
+.empty p { color: var(--color-text-2); font-size: 15px; }

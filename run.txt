@@ -1,0 +1,27 @@
+cd backend
+
+# Create virtual environment
+python -m venv venv
+
+# Activate it (Windows)
+venv\Scripts\activate
+
+# Install all Python packages
+pip install -r requirements.txt
+cd frontend
+
+# Install Node dependencies
+npm install
+
+cd backend
+
+# Activate virtual environment
+venv\Scripts\activate
+
+# Start the API server
+python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+cd frontend
+
+# Start development server
+npm run dev

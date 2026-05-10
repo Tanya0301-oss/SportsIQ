@@ -1,0 +1,178 @@
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--color-text-2);
+  margin-bottom: 20px;
+  padding: 6px 0;
+  transition: color 0.2s;
+}
+.back:hover { color: var(--color-text); }
+
+/* ── Header card ────────────────────────────────────────────── */
+.header {
+  padding: 28px;
+  margin-bottom: 16px;
+}
+.headerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.league {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-2);
+}
+
+.matchRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.teamBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+.teamRight { align-items: center; }
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-cyan));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 0 20px var(--color-primary-glow);
+}
+.teamName {
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.scoreBlock { text-align: center; }
+.scoreMain {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+}
+.scoreSep { color: var(--color-text-3); font-size: 32px; }
+.minute {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--color-amber);
+  background: var(--color-amber-dim);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+/* ── Probability bar section ────────────────────────────────── */
+.probSection { display: flex; flex-direction: column; gap: 10px; }
+.probLabels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.probLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.probCenter { align-items: center; text-align: center; }
+.probRight  { align-items: flex-end; text-align: right; }
+.probTeam   { font-size: 12px; color: var(--color-text-2); }
+.probValue  { font-family: var(--font-display); font-size: 22px; font-weight: 700; }
+
+/* ── Inference badge ────────────────────────────────────────── */
+.inferenceBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--color-cyan);
+  background: var(--color-cyan-dim);
+  border: 1px solid rgba(6,182,212,0.2);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: 20px;
+}
+
+/* ── Charts ─────────────────────────────────────────────────── */
+.charts { margin-bottom: 20px; }
+.chartCard {
+  padding: 24px;
+  min-height: 320px;
+}
+.chartTitle {
+  font-size: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.shapLabel {
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  color: var(--color-text-2);
+  padding: 2px 8px;
+  background: var(--color-surface-2);
+  border-radius: var(--radius-full);
+}
+.chartEmpty {
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-3);
+  font-size: 14px;
+}
+
+/* ── Connection status ──────────────────────────────────────── */
+.connStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+.connected {
+  color: var(--color-green);
+  background: var(--color-green-dim);
+}
+.disconnected {
+  color: var(--color-amber);
+  background: var(--color-amber-dim);
+}
+
+/* ── Stats row ──────────────────────────────────────────────── */
+.statsCard { padding: 24px; }
+.statsTitle { font-size: 15px; margin-bottom: 16px; }
+.statsGrid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}

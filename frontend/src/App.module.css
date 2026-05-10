@@ -1,0 +1,65 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8, 11, 20, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.logoIcon {
+  font-size: 24px;
+  filter: drop-shadow(0 0 8px rgba(108, 99, 255, 0.6));
+}
+
+.navLinks {
+  display: flex;
+  gap: 4px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-2);
+  transition: all 0.2s var(--ease-out);
+}
+
+.navLink:hover {
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.navLink.active {
+  color: var(--color-primary);
+  background: var(--color-primary-glow);
+}
